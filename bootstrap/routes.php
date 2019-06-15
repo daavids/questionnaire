@@ -3,7 +3,9 @@
 $routes = [
     [
         'GET', '/', function() use ($twig) {
-            echo $twig->render('default.htm');
+            echo $twig->render('default.htm', [
+                'page' => 'pages/index.htm'
+            ]);
         }
     ]
 ];

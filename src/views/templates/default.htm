@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf_token" content="{{ csrf_token }}">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="/css/app.css">
     <title>Questionnaire{% if title is not null %} | {{ title }} {% endif %}</title>
 </head>
 <body>
     
     {% include 'inc/navbar.htm' %}
     
-    <div class="container-fluid" id="app">
+    <div class="container text-center" id="app">
     
     {% if page is not null %}
         {% include page %}

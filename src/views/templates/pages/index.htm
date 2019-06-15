@@ -1,0 +1,11 @@
+<h1 class="mb-5 pb-5">Questionnaire</h1>
+
+{% if authStatus is not auth %}
+
+<auth-component></auth-component>
+
+{% else %}
+
+<test-choice-component></test-choice-component>
+
+{% endif %}

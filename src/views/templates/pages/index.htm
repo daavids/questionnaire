@@ -6,7 +6,18 @@
 
 {% else %}
 
-<h3 class="mb-5 pb-5">User: {{ user.name }}</h3>
-<test-choice-component></test-choice-component>
+<h3 class="mb-5">User: {{ user.name }}</h3>
+
+    {% if test is null%}
+    
+    <test-choice-component></test-choice-component>
+
+    {% else %}
+
+    <h3>{{ test.name }}</h3>
+
+    <test-component test="{{ test.id }}" totalQuestions="{{ test.questions_count }}"></test-component>
+
+    {% endif %}
 
 {% endif %}

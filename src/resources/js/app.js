@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Auth from './components/Auth.vue';
 import TestChoice from './components/TestChoice.vue';
+import Test from './components/Test.vue';
 
 window.$ = window.jQuery = require('jquery');
 require('popper.js');
@@ -13,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
         el: '#app',
         components: {
             'auth-component': Auth,
-            'test-choice-component': TestChoice
+            'test-choice-component': TestChoice,
+            'test-component': Test
         }
     });
 });

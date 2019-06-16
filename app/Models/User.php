@@ -6,15 +6,20 @@ use App\Models\Model;
 use App\Helpers\Database;
 
 class User extends Model
-{
+{    
+    protected static $table = 'users';
+
     public $name;
-    protected $table = 'users';
 
     public function __construct(string $name)
     {
         $this->name = $name;
-        $this->connection = Database::getConnection();
+        $this->connection = Database::getConnection();        
+        return $this;
+    }
 
+    public function save()
+    {
         $stmt = $this->connection->prepare(
             "INSERT INTO users (name) VALUES (:name)"
         );
@@ -23,8 +28,8 @@ class User extends Model
 
         $userId = $this->connection->lastInsertId();
         $this->id = $userId;
-        
-        return $this;
+
+        return;
     }
 
     public static function findByName(string $name)
@@ -37,12 +42,19 @@ class User extends Model
 
         $stmt->bindParam(':name', $name);
         $stmt->execute();
+        $data = $stmt->fetch(\PDO::FETCH_OBJ);
 
-        return $stmt->fetch(\PDO::FETCH_OBJ);
+        $user = new User($data->name);
+        $user->id = $data->id;
+
+        return $user;
     }
 
     public static function create(string $name): User
     {        
-        return new User($name);        
+        $user = new User($name);
+        $user->save();
+
+        return $user;
     }
 }

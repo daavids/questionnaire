@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
+use App\Helpers\Database;
+
 class Model
 {
-    use App\Helpers\Database;
+    protected $table;
+    protected $connection;
 
-    public $table;
-    
-    public static function find($id)
+    public $id;
+    public $created_at;
+    public $updated_at;
+
+    public function __construct()
     {
-        $stmt = $this->connection("SELECT * FROM {$this->table} WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        $this->connection = Database::getConnection();
     }
-
 }

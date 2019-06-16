@@ -1,18 +1,17 @@
 <template>
-    <form action="/login" method="POST">
-        <div class="form-group">
-            <label for="name">Enter your name to begin</label>
-            <input type="text" name="name" id="name" class="form-control" required placeholder="Enter your name">
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+    <div v-if="tests.length">
+        <h4>Choose your test</h4>
+    </div>
+    <div v-else>
+        <h4>No tests are currently available.</h4>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            name: "",
+            tests: []
         }
     },
     methods: {

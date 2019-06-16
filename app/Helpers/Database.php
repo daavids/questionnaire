@@ -9,7 +9,7 @@ class Database
     private $user;
     private $password;
 
-    protected $connection;
+    public static $connection;
 
     public function __construct(string $host, string $database, string $user, string $password)
     {
@@ -23,10 +23,16 @@ class Database
     {
         try {
             $conn = new \PDO("mysql:host={$this->host};dbname={$this->database}", $this->user, $this->password);
-            $this->connection = $conn;
+            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+            self::$connection = $conn;
             return true;
         } catch (\PDOException $e) {
             return false;
         }
+    }
+
+    public static function getConnection()
+    {
+        return self::$connection;
     }
 }

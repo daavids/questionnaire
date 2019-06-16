@@ -1,10 +1,11 @@
 <template>
-    <form action="/login" method="POST" @submit="attemptAuth">
+    <form action="/login" method="POST" class="py-5">
         <div class="form-group">
             <label for="name">Enter your name to begin</label>
             <input type="text" name="name" id="name" class="form-control"
                 required placeholder="Enter your name" v-model="name">
         </div>
+        <input type="hidden" name="_token" v-model="token">
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </template>
@@ -14,15 +15,11 @@ export default {
     data() {
         return {
             name: "",
+            token: ""
         }
     },
-    methods: {
-        attemptAuth() {
-            this.$http.post('/login', {
-                name: this.name,
-                token: document.querySelector('meta[name=csrf_token]').getAttribute('content')
-            });
-        }
+    mounted() {
+        this.token = document.querySelector('meta[name="csrf_token"]').getAttribute('content');
     }
 }
 </script>

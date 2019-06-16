@@ -1871,19 +1871,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: ""
+      name: "",
+      token: ""
     };
   },
-  methods: {
-    attemptAuth: function attemptAuth() {
-      this.$http.post('/login', {
-        name: this.name,
-        token: document.querySelector('meta[name=csrf_token]').getAttribute('content')
-      });
-    }
+  mounted: function mounted() {
+    this.token = document.querySelector('meta[name="csrf_token"]').getAttribute('content');
   }
 });
 
@@ -1907,11 +1904,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: ""
+      tests: []
     };
   },
   methods: {}
@@ -20722,10 +20718,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "form",
-    {
-      attrs: { action: "/login", method: "POST" },
-      on: { submit: _vm.attemptAuth }
-    },
+    { staticClass: "py-5", attrs: { action: "/login", method: "POST" } },
     [
       _c("div", { staticClass: "form-group" }, [
         _c("label", { attrs: { for: "name" } }, [
@@ -20761,6 +20754,27 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.token,
+            expression: "token"
+          }
+        ],
+        attrs: { type: "hidden", name: "_token" },
+        domProps: { value: _vm.token },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.token = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
       _c(
         "button",
         { staticClass: "btn btn-success", attrs: { type: "submit" } },
@@ -20791,39 +20805,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _vm.tests.length
+    ? _c("div", [_c("h4", [_vm._v("Choose your test")])])
+    : _c("div", [_c("h4", [_vm._v("No tests are currently available.")])])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { attrs: { action: "/login", method: "POST" } }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "name" } }, [
-          _vm._v("Enter your name to begin")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            name: "name",
-            id: "name",
-            required: "",
-            placeholder: "Enter your name"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-success", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

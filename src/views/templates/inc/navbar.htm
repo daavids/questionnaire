@@ -14,11 +14,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/tests">Tests</a>
             </li>
-            {% if authStatus is auth %}
+        </ul>
+        {% if authStatus is auth %}
+        <ul class="navbar-nav ml-auto">
             <li class="nav-item ml-auto">
                 <a class="nav-link" href="/logout">Logout</a>
             </li>
-            {% endif %}
         </ul>
+        {% endif %}
     </div>
 </nav>

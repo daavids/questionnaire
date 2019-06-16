@@ -1,11 +1,12 @@
-<h1 class="mb-5 pb-5">Questionnaire</h1>
+<h1 class="mb-5">Questionnaire</h1>
 
-{% if authStatus is not auth %}
+{% if authStatus is not auth and user is null %}
 
 <auth-component></auth-component>
 
 {% else %}
 
+<h3 class="mb-5 pb-5">User: {{ user.name }}</h3>
 <test-choice-component></test-choice-component>
 
 {% endif %}

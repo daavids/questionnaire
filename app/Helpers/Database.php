@@ -22,10 +22,15 @@ class Database
     public function connect(): bool
     {
         try {
+
             $conn = new \PDO("mysql:host={$this->host};dbname={$this->database}", $this->user, $this->password);
-            $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+            
+            if (getenv('ENV') != 'prod') { $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING); }
+
             self::$connection = $conn;
+
             return true;
+
         } catch (\PDOException $e) {
             return false;
         }

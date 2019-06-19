@@ -50,9 +50,11 @@ $routes = [
         'GET', '/tests/[i:id]/[a:action]?', function($id, $action = null) use ($twig) {
             
             $user = Auth::getAuthUser();
-            $test = Test::find($id, true);
             
             if (empty($action)) {
+
+                $test = Test::find($id, true);
+
                 echo $twig->render('default.htm', [
                     'page' => 'pages/index.htm',
                     'test' => $test,
@@ -61,9 +63,27 @@ $routes = [
                 return;
             }
 
+            $test = Test::find($id);
+
             if ($action == 'questions') {
+                
                 $nq = $test->nextQuestion();
-                Response::json($nq, true);
+                
+                if (!empty($nq)) {
+                    Response::json($nq, true);
+                    return;
+                }         
+                       
+            } elseif ($action == 'results') {
+
+                $results = $test->getResults();
+
+                echo $twig->render('default.htm', [
+                    'page' => 'pages/index.htm',
+                    'test' => $test,
+                    'user' => $user,
+                    'results' => $results       
+                ]);
                 return;
             }
         }

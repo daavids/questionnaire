@@ -6,7 +6,6 @@ use App\Helpers\Database;
 
 class Model
 {
-    protected $table;
     protected $connection;
 
     public $id;

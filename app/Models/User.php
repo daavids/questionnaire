@@ -7,15 +7,12 @@ use App\Helpers\Database;
 
 class User extends Model
 {    
-    protected static $table = 'users';
-
     public $name;
 
     public function __construct(string $name)
     {
         $this->name = $name;
         $this->connection = Database::getConnection();        
-        return $this;
     }
 
     public function save()
@@ -43,6 +40,8 @@ class User extends Model
         $stmt->bindParam(':name', $name);
         $stmt->execute();
         $data = $stmt->fetch(\PDO::FETCH_OBJ);
+
+        if (empty($data)) { return null; }
 
         $user = new User($data->name);
         $user->id = $data->id;

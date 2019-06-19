@@ -6,7 +6,7 @@
 
 {% else %}
 
-<h3 class="mb-5">User: {{ user.name }}</h3>
+<h3>User: {{ user.name }}</h3>
 
     {% if test is null%}
     
@@ -14,9 +14,18 @@
 
     {% else %}
 
-    <h3>{{ test.name }}</h3>
+    <h3>Test: {{ test.name }}</h3>
 
-    <test-component test="{{ test.id }}" totalQuestions="{{ test.questions_count }}"></test-component>
+        {% if results is null %}
+
+        <test-component testprop='{{ test|json_encode() }}'></test-component>
+
+        {% else %}
+
+        <h2 class="my-5">Thanks for participating!</h2>
+        <h4>You correctly answered {{ results.correct }} out of {{ results.total }} total questions.</h4>
+
+        {% endif %}
 
     {% endif %}
 

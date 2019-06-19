@@ -2,7 +2,7 @@
     <spinner-component v-if="showSpinner"></spinner-component>
     <div v-else>
         <div v-if="tests.length">
-            <h4>Choose your test</h4>
+            <h2 class="my-5">Choose your test</h2>
             <a :href="'/tests/'+test.id" class="btn btn-primary btn-lg m-3"
                 v-for="test in tests" :key="test.id">{{ test.name }}</a>
         </div>

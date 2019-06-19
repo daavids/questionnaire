@@ -5,7 +5,7 @@
 ### Requirements:  
 1. PHP 7.0+
 2. MySQL
-3. Apache server
+3. Apache server with mod_rewrite enabled
 
 
 ### Setup:

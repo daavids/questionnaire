@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    padding-top: 120px;
+    display: flex;
+    flex-direction: column;
+}
+
+footer#footer, nav.navbar {
+    border-width: 3px !important;
+}
+
+#app {
+    flex: 1 0 auto;
+}
+
+#footer {
+    flex-shrink: 0;
+}

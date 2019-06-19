@@ -1,0 +1,32 @@
+<h1 class="mb-5">Questionnaire</h1>
+
+{% if authStatus is not auth and user is null %}
+
+<auth-component></auth-component>
+
+{% else %}
+
+<h3>User: {{ user.name }}</h3>
+
+    {% if test is null%}
+    
+    <test-choice-component></test-choice-component>
+
+    {% else %}
+
+    <h3>Test: {{ test.name }}</h3>
+
+        {% if results is null %}
+
+        <test-component testprop='{{ test|json_encode() }}'></test-component>
+
+        {% else %}
+
+        <h2 class="my-5">Thanks for participating!</h2>
+        <h4>You correctly answered {{ results.correct }} out of {{ results.total }} total questions.</h4>
+
+        {% endif %}
+
+    {% endif %}
+
+{% endif %}

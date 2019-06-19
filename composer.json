@@ -1,0 +1,22 @@
+{
+    "name": "daavids/questionnaire",
+    "description": "Basic questionnaire with pick 1 of X answers type of questions",
+    "type": "project",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "mrtehnuke",
+            "email": "davidsgabalins@gmail.com"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "1.1.0",
+        "twig/twig": "^2.0",
+        "symfony/dotenv": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

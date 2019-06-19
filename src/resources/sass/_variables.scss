@@ -1,0 +1,18 @@
+// Body
+$body-bg: whitesmoke;
+
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border-color: $laravel-border-color;
+
+$card-border-color: $laravel-border-color;
+
+// Typography
+$font-family-sans-serif: "Arial", sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+$text-color: rgb(70, 70, 70);
+
+// Inputs
+$input-border-color: lighten($text-color, 40%);
+$input-placeholder-color: lighten($text-color, 30%);

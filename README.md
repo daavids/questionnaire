@@ -12,4 +12,5 @@
 1. git clone
 2. Setup vhost (point DocumentRoot to the public folder)
 3. Import the SQL dump file for starter data
-4. Composer install
+4. Copy .env.example to .env in the project root folder and enter your DB credentials
+5. Composer install
